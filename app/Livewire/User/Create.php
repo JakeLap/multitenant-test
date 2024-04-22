@@ -52,6 +52,8 @@ class Create extends Component
     public function save(UserService $userService)
     {
         $this->validate();
+
+        dd($this->user);
         
         $userService->createUser(
             name: $this->name,
