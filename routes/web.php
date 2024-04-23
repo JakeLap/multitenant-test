@@ -15,13 +15,13 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-// Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::name('user.')->prefix('user')->group(function () {
         Route::get('/', User\Index::class)->name('index');
-        Route::get('/create', User\Create::class)->name('create');
-        Route::get('/{user}/edit', User\Create::class)->name('edit');
-        Route::get('/{user}', User\View::class)->name('show');
+        Route::get('/create', User\Create::class)->name('create')->can('create', App\Models\User::class);
+        Route::get('/{user}/edit', User\Edit::class)->name('edit')->can('update', 'user');
+        // Route::get('/{user}', User\View::class)->name('show');
     });
 
     Route::name('company.')->prefix('company')->group(function () {
@@ -38,6 +38,6 @@ Route::view('profile', 'profile')
         Route::get('/{project}', Project\View::class)->name('show');
     });
 
-// });
+});
 
 require __DIR__.'/auth.php';

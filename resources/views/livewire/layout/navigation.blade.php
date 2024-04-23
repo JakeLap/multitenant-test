@@ -99,7 +99,7 @@ new class extends Component
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
-                <button wire:click="logout" class="w-full text-start">
+                <button type="button" wire:click="logout" class="w-full text-start">
                     <x-responsive-nav-link>
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>

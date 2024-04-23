@@ -8,14 +8,6 @@ use SensitiveParameter;
 
 class UserService
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function createUser(
         string $name,
         string $email,
@@ -31,5 +23,33 @@ class UserService
             'role' => $role,
             'password' => $hashed_password,
         ]);
+    }
+
+    public function updateUser(
+        User $user,
+        string $name,
+        string $email,
+        string $role,
+        #[SensitiveParameter] ?string $password
+    ): User
+    {
+        $data = [
+            'name'=> $name,
+            'email'=> $email,
+            'role'=> $role,
+        ];
+
+        if (isset($password)) {
+            $data['password'] = Hash::make($password);
+        }
+
+        $user->update($data);
+
+        return $user;
+    }
+
+    public function deleteUser(User $user): bool|null
+    {
+        return $user->delete();
     }
 }

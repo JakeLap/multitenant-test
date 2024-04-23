@@ -2,7 +2,6 @@
 
 namespace App\Livewire\User;
 
-use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -23,17 +22,6 @@ class Create extends Component
     #[Validate]
     public $email;
 
-    private ?User $user = null;
-
-    public function mount(?User $user)
-    {
-        $this->user = $user;
-        $this->name = $user?->name;
-        $this->role = $user?->role;
-        $this->email = $user?->email;
-        $this->password = $user?->password;
-    }
-
     public function render()
     {
         return view('livewire.users.create');
@@ -52,8 +40,6 @@ class Create extends Component
     public function save(UserService $userService)
     {
         $this->validate();
-
-        dd($this->user);
         
         $userService->createUser(
             name: $this->name,
@@ -61,5 +47,9 @@ class Create extends Component
             role: $this->role,
             password: $this->password
         );
+
+        session()->flash('status', 'User created successfully.');
+
+        $this->redirectRoute('user.index', navigate: true);
     }
 }

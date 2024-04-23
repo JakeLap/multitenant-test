@@ -28,8 +28,6 @@
                     </header>
 
                     <main class="mt-6">
-                        {{ app('currentTenant')  }}
-                        {{ config('multitenancy.current_tenant_container_key') }}
                         <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
                             <a
                                 href="https://laravel.com/docs"
