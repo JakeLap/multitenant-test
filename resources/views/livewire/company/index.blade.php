@@ -1,12 +1,14 @@
 <div class="max-w-screen-lg mx-auto space-y-4 py-4">
 
-    <a
-        wire:navigate
-        href="{{ route('company.create') }}"
-        class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700 uppercase"
-    >
-    Create company
-    </a>
+    @can('create', App\Models\Company::class)
+      <a
+          wire:navigate
+          href="{{ route('company.create') }}"
+          class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700 uppercase"
+      >
+      Create company
+      </a>
+    @endcan
   
     <div class="rounded-lg border border-gray-200">
       <div class="overflow-x-auto rounded-t-lg">
@@ -23,17 +25,27 @@
           <tbody class="divide-y divide-gray-200">
             @foreach ($companies as $company)
             <tr>
-                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ $company->name }}</td>
-                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $company->projects->count() }}</td>
-                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $company->users->count() }}</td>
-                <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                <td class="px-4 py-2 font-medium text-gray-900">{{ $company->name }}</td>
+                <td class="px-4 py-2 text-gray-700">{{ $company->projects->count() }}</td>
+                <td class="px-4 py-2 text-gray-700">{{ $company->users->count() }}</td>
+                <td class="px-4 py-2 text-gray-700">
                     <a
                         wire:navigate
-                        href="{{ route('company.edit', ['company' => $company]) }}"
+                        href="{{ route('company.project.index', ['company' => $company]) }}"
                         class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700 uppercase"
-                    >
-                    Edit
+                    >                    
+                    Projects
                     </a>
+
+                    @can('update', $company)
+                      <a
+                          wire:navigate
+                          href="{{ route('company.edit', ['company' => $company]) }}"
+                          class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700 uppercase"
+                      >
+                      Edit
+                      </a>
+                    @endcan
                 </td>
             </tr>
             @endforeach

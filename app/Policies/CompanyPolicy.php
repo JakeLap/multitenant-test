@@ -63,4 +63,28 @@ class CompanyPolicy
     {
         return $user->is_admin;
     }
+
+    /**
+     * Determine whether the user can create projects for the specific company.
+     */
+    public function createProjects(User $user, Company $company): bool
+    {
+        return $user->is_admin || $user->companies->where('id', $company->id)->count() > 0;
+    }
+
+    /**
+     * Determine whether the user can update projects for the specific company.
+     */
+    public function updateProjects(User $user, Company $company): bool
+    {
+        return $user->is_admin || $user->companies->where('id', $company->id)->count() > 0;
+    }
+
+    /**
+     * Determine whether the user can delete projects for the specific company.
+     */
+    public function deleteProjects(User $user, Company $company): bool
+    {
+        return $user->is_admin || $user->companies->where('id', $company->id)->count() > 0;
+    }
 }

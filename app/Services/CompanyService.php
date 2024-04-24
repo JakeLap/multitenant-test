@@ -38,4 +38,9 @@ class CompanyService
     {
         return $company->users()->sync($ids);
     }
+
+    public function deleteCompany(Company $company): bool
+    {
+        return $company->delete();
+    }
 }

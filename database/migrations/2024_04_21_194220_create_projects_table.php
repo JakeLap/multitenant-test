@@ -15,8 +15,8 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->string('description');
-            $table->ulid('creator_id');
-            $table->ulid('company_id');
+            $table->foreignUlid('creator_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignUlid('company_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

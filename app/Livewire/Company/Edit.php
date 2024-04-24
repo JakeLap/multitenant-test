@@ -46,10 +46,23 @@ class Edit extends Component
     {
         $this->validate();
 
+        $this->authorize('update', $this->company);
+
         $company = $companyService->updateCompany($this->company, $this->name, $this->users);
 
         session()->flash('status', 'Company updated successfully.');
 
         $this->redirectRoute('company.edit', ['company' => $company], navigate: true);
+    }
+
+    public function delete(CompanyService $companyService)
+    {
+        $this->authorize('delete', $this->company);
+
+        $companyService->deleteCompany($this->company);
+
+        session()->flash('status', 'Company deleted successfully.');
+
+        $this->redirectRoute('company.index', navigate: true);
     }
 }

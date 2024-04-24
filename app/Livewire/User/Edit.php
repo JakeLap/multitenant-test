@@ -49,6 +49,8 @@ class Edit extends Component
     public function save(UserService $userService)
     {
         $this->validate();
+
+        $this->authorize('update', $this->user);
         
         $userService->updateUser(
             user: $this->user,

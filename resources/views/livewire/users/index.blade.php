@@ -23,10 +23,10 @@
         <tbody class="divide-y divide-gray-200">
           @foreach ($users as $user)
           <tr>
-              <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ $user->name }}</td>
-              <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ $user->email }}</td>
-              <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $user->role }}</td>
-              <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+              <td class="px-4 py-2 font-medium text-gray-900">{{ $user->name }}</td>
+              <td class="px-4 py-2 font-medium text-gray-900">{{ $user->email }}</td>
+              <td class="px-4 py-2 text-gray-700">{{ $user->role }}</td>
+              <td class="px-4 py-2 text-gray-700">
                   <a
                       wire:navigate
                       href="{{ route('user.edit', ['user' => $user]) }}"

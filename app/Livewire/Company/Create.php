@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Company;
 
+use App\Models\Company;
 use App\Models\User;
 use App\Services\CompanyService;
 use Livewire\Attributes\Validate;
@@ -34,6 +35,8 @@ class Create extends Component
     public function save(CompanyService $companyService)
     {
         $this->validate();
+
+        $this->authorize('create', Company::class);
 
         $companyService->createCompany($this->name, $this->users);
 

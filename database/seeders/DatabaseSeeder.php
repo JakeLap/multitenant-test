@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
+use App\Models\Project;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Multitenancy\Models\Tenant;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +24,38 @@ class DatabaseSeeder extends Seeder
 
     private function runTenantSpecificSeeders(): void
     {
-        dd('tenant');
+        $password = Hash::make('123456789');
+
+        // Create an admin user
+        User::factory()->create([
+            'email' => 'admin@test.tes',
+            'password' => $password,
+            'role' => 'admin'
+        ]);
+
+        for ($i=0; $i < 3; $i++) { 
+
+            $users = User::factory()
+                ->count(3)
+                ->state(function (array $attributes) use ($password) {
+                    return [
+                        'password' => $password,
+                    ];
+                });
+    
+            $company = Company::factory()
+                ->has($users)
+                ->create();
+    
+            Project::factory()
+                ->for($company)
+                ->count(3)
+                ->create(
+                    [
+                        'creator_id' => $company->users()->inRandomOrder()->first()->id,
+                    ]
+                );
+        }        
     }
 
     private function runLandlordSpecificSeeders(): void

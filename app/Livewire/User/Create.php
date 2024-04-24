@@ -2,6 +2,7 @@
 
 namespace App\Livewire\User;
 
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -40,6 +41,8 @@ class Create extends Component
     public function save(UserService $userService)
     {
         $this->validate();
+
+        $this->authorize('create', User::class);
         
         $userService->createUser(
             name: $this->name,

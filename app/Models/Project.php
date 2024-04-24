@@ -12,6 +12,8 @@ class Project extends Model
 {
     use HasFactory, UsesTenantConnection, HasUlids;
 
+    protected $fillable = ['name', 'description', 'company_id', 'creator_id'];
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'creator_id', 'id');
