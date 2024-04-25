@@ -51,6 +51,16 @@ return [
             // And other options if needed ...
         ],
 
+        'testing' => [
+            'driver' => 'pgsql',
+            'database' => 'testing',
+            'host' => 'pgsql',
+            'port' => '5432',
+            'username' => 'sail',
+            'password' => 'password',
+            // And other options if needed ...
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),
