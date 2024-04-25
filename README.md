@@ -79,5 +79,5 @@ For simplicity **all users have been seeded with the password "123456789"** in c
 Some example tests have been created using Pest. You can run them like so:
 
 ```
-./vendor/bin/sail test
+./vendor/bin/sail test --env=testing
 ```

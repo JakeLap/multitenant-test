@@ -1,6 +1,8 @@
 <div class="max-w-screen-lg mx-auto space-y-4 py-4">
+    <div class="flex flex-row justify-between items-center">
+      <div></div>
 
-    @can('create', App\Models\Company::class)
+      @can('create', App\Models\Company::class)
       <a
           wire:navigate
           href="{{ route('company.create') }}"
@@ -9,6 +11,8 @@
       Create company
       </a>
     @endcan
+    </div>
+    
   
     <div class="rounded-lg border border-gray-200">
       <div class="overflow-x-auto rounded-t-lg">
