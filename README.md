@@ -51,15 +51,15 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 ### Landlord
 
-Docker will automatically create a landlord database. To migrate in run the following command:
+Docker will automatically create a landlord database. To migrate and seed run the following command:
 
 ```
-./vendor/bin/sail artisan migrate --path=database/migrations/landlord --database=landlord
+./vendor/bin/sail artisan migrate:fresh --seed --path=database/migrations/landlord --database=landlord
 ```
 
 ### Tenants
 
-I have also configured Docker to create 2 tenant databases (tenant1, tenant2). You can migrate them like so:
+I have also configured Docker to create 2 tenant databases (tenant1, tenant2). You can migrate and seed them like so:
 
 ```
 ./vendor/bin/sail artisan tenant:artisan "migrate:fresh --seed"
