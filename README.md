@@ -1,6 +1,6 @@
 # Laravel multitenancy test
 
-This project uses PHP 8.3, Laravel 11 and Livewire.
+This project uses PHP 8.3, Laravel 11 and Livewire. To handle the multitenancy spatie's laravel-multitenancy has been user.
 
 ## Set up
 
