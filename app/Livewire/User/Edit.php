@@ -27,6 +27,7 @@ class Edit extends Component
 
     public function mount(User $user)
     {
+        $this->authorize('create', $user);
         $this->user = $user;
         $this->fill($user);
     }

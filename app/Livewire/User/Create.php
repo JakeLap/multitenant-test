@@ -23,6 +23,11 @@ class Create extends Component
     #[Validate]
     public $email;
 
+    public function mount()
+    {
+        $this->authorize('create', User::class);
+    }
+
     public function render()
     {
         return view('livewire.users.create');

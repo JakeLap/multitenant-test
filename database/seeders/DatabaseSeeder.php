@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Multitenancy\Models\Tenant;
 
@@ -60,6 +61,16 @@ class DatabaseSeeder extends Seeder
 
     private function runLandlordSpecificSeeders(): void
     {
-        dd('landlord');
+        DB::table('tenants')->insert([
+            'name' => 'tenant1',
+            'database' => 'tenant1',
+            'domain' => 'tenant1.test'
+        ]);
+
+        DB::table('tenants')->insert([
+            'name' => 'tenant2',
+            'database' => 'tenant2',
+            'domain' => 'tenant2.test'
+        ]);
     }
 }

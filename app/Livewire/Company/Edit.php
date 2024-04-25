@@ -20,6 +20,7 @@ class Edit extends Component
 
     public function mount(Company $company)
     {
+        $this->authorize('update', $company);
         $this->company = $company;
         $this->name = $company->name;
         $this->users = $company->users->pluck('id')->toArray();

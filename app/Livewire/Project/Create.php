@@ -18,8 +18,16 @@ class Create extends Component
 
     public Company $company;
 
+    public function mount(Company $company)
+    {
+        $this->authorize('createProjects', $this->company);
+        $this->company = $company;
+    }
+
     public function render()
     {
+        $this->authorize('createProjects', $this->company);
+
         return view('livewire.project.create');
     }
 

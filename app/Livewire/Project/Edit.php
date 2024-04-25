@@ -22,6 +22,7 @@ class Edit extends Component
 
     public function mount(Company $company, Project $project)
     {
+        $this->authorize('updateProjects', $this->company);
         $this->fill($project);
     }
 

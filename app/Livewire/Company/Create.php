@@ -15,6 +15,11 @@ class Create extends Component
 
     public $users = [];
 
+    public function mount()
+    {
+        $this->authorize('create', Company::class);
+    }
+
     public function render()
     {
         $users = User::all();
