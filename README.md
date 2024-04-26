@@ -12,8 +12,8 @@ This project uses Laravel Sail (Laravel's first party docker wrapper). You must 
 - In your /etc/hosts create the following entries
 
 ```
-tenant1.test    127.0.0.1
-tenant2.test    127.0.0.1
+127.0.0.1   tenant1.test
+127.0.0.1   tenant2.test
 ```
 
 ### Laravel Sail set up
