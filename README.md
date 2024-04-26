@@ -41,7 +41,7 @@ Hint: If you wish you can create a bashrc alias to shorten the sail command like
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 ```
 
-### Install dependencies and run migrations
+### Install dependencies
 
 ```
 ./vendor/bin/sail composer install
