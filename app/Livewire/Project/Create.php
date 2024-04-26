@@ -54,6 +54,6 @@ class Create extends Component
 
         session()->flash('status', 'Project created successfully.');
 
-        $this->redirectRoute('company.project.index', ['company' => $this->company, 'project' => $project], navigate: true);
+        $this->redirectRoute('company.project.index', ['company' => $this->company], navigate: true);
     }
 }
